@@ -1,3 +1,3 @@
 # Device Template
 
-This serves as a template for all PyFarm devices to follow.
+This directory serves as a template for all PyFarm devices to follow.

@@ -1,6 +1,15 @@
 site_name: PyFarm
 site_url: https://example.com/
 nav:
-  - Home: index.md
+  - Home:
+      - Welcome: index.md
+  - Getting Started:
+      - Project Information: getting_started/information.md
+      - Local Setup: getting_started/local_setup.md
+      - Deployment: getting_started/deployment.md
 theme: readthedocs
 extra_css: [extra.css]
+markdown_extensions:
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
