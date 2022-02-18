@@ -1,2 +1,6 @@
-site_name: My Docs
+site_name: PyFarm
 site_url: https://example.com/
+nav:
+  - Home: index.md
+theme: readthedocs
+extra_css: [extra.css]
