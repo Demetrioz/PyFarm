@@ -1,0 +1,110 @@
+/* Side Search Area */
+.wy-side-nav-search {
+  background-color: #43a047;
+  color: #000000;
+  margin-bottom: 0;
+}
+.wy-side-nav-search > a {
+  color: #000000;
+}
+
+/* Side navigation */
+.wy-side-scroll {
+  background-color: #cddc39;
+  color: #000000;
+}
+
+p.caption {
+  padding-left: 8px !important;
+  background-color: #43a047;
+}
+
+.wy-menu-vertical a {
+  color: #000000;
+}
+
+/* Top level navigation items */
+.toctree-l1 > a {
+  padding-left: 32px;
+}
+
+.toctree-l1 > a:hover {
+  background-color: #00701a;
+  color: #ffffff;
+}
+
+/* Currently selected navigation item */
+li.toctree-l1.current > a {
+  background-color: #99aa00;
+  color: #000000;
+}
+
+.wy-menu-vertical li.current a {
+  border: none;
+}
+
+.wy-menu-vertical li.current > a:hover {
+  background-color: #76d275;
+  color: #000000;
+}
+
+.wy-menu-vertical li.toctree-l1.current > a {
+  border: none;
+}
+
+/* Sub-navigation items under the currently selected item */
+.toctree-l2 {
+  background-color: #ffff6e;
+  color: #000000;
+}
+
+.wy-menu-vertical li.current a:hover {
+  background-color: #43a047;
+  color: #000000;
+}
+
+.wy-menu-vertical li.toctree-l3 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.wy-menu-vertical li.toctree-l2.current > a {
+  background-color: #e6f642;
+  color: #000000;
+}
+
+.wy-menu-vertical li.toctree-l2.current > a:hover {
+  background-color: #76d275;
+  color: #000000;
+}
+
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a {
+  background-color: #e6f642;
+  color: #000000;
+}
+
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a:hover {
+  background-color: #76d275;
+  color: #000000;
+}
+
+.wy-menu-vertical li.toctree-l3.current li.toctree-l4 > a {
+  background-color: #e6f642;
+  color: #000000;
+}
+
+.wy-menu-vertical li.toctree-l3.current li.toctree-l4 > a:hover {
+  background-color: #76d275;
+  color: #000000;
+}
+
+/* Bottom Navigation */
+.rst-versions .rst-current-version {
+  background-color: #00701a;
+}
+
+/* Checkboxes */
+.task-list-item {
+  display: flex;
+  align-items: baseline;
+}
