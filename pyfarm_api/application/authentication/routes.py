@@ -1,6 +1,9 @@
 from flask import Blueprint, jsonify, make_response, request
 from flask import current_app as app
 
+from .. import db
+from .models import User
+
 auth_bp = Blueprint(
   "auth_bp",
   __name__
@@ -10,4 +13,17 @@ auth_bp = Blueprint(
 def login():
   data = request.get_json()
   print(f"Data: {data}")
-  return make_response({ "Data": data }, 200)
+  users = User.query.all()
+  return make_response(
+    { 
+      "Data": [
+        {
+          "Id": user.userId,
+          "name": user.username
+        }
+        for user in users
+        if not user.isDeleted
+      ]
+    }, 
+    200
+  )

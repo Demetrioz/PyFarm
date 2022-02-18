@@ -1,3 +1,5 @@
 .venv
 __pycache__
+
 pyfarm_api/.env
+pyfarm_api/application/pyfarm.db
