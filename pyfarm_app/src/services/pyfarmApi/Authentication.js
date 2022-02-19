@@ -27,3 +27,15 @@ export const login = async (username, password) => {
   let token = jwt_decode(tokenResponse[0]);
   return token;
 };
+
+export const resetPassword = async (password) => {
+  let newCredentials = {
+    password: password,
+  };
+
+  return await PyFarmApiService.request(
+    "auth/password",
+    newCredentials,
+    "POST"
+  );
+};

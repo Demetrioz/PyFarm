@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { removeDialog } from "../../redux/NotificationsSlice";
 
 import TextField from "@mui/material/TextField";
 
 import DialogBase from "../DialogBase/DialogBase";
 
+import PyFarmApiService from "../../services/PyFarmApiService";
+
 import Style from "./PasswordResetDialog.module.css";
 
-function PasswordResetDialog() {
+function PasswordResetDialog(props) {
+  const dispatch = useDispatch();
   const [password, setPassword] = useState({
     value: "",
     error: false,
@@ -47,8 +53,16 @@ function PasswordResetDialog() {
     });
   };
 
-  const handleSave = () => {
-    console.log("Saving...");
+  const handleSave = async () => {
+    try {
+      let result = await PyFarmApiService.Authentication.resetPassword(
+        password.value
+      );
+
+      if (result && result[0] == true) dispatch(removeDialog(props.id));
+    } catch (e) {
+      console.log("Error!", e);
+    }
   };
 
   return (

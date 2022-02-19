@@ -22,7 +22,7 @@ function App() {
       dispatch(
         addDialog({
           key: "password_reset",
-          content: <PasswordResetDialog />,
+          content: <PasswordResetDialog id="password_reset" />,
         })
       );
   }, [user, dispatch]);

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import findIndex from "lodash/findIndex";
 
 export const notificationSlice = createSlice({
   name: "notifications",
@@ -10,7 +11,11 @@ export const notificationSlice = createSlice({
       state.dialogs.push(action.payload);
     },
     removeDialog: (state, action) => {
-      // Remove dialog based on id
+      let index = findIndex(state.dialogs, (d) => {
+        return d.key === action.payload;
+      });
+
+      if (index >= 0) state.dialogs.splice(index, 1);
     },
   },
 });

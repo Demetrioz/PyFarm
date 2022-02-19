@@ -4,6 +4,7 @@ from flask import Blueprint, jsonify, make_response, request
 from flask import current_app as app
 from os import environ
 
+from ..decorators.authorize import authorize
 from ..dtos.api_response import ApiResponse
 from .. import db
 from .models import User
@@ -18,7 +19,7 @@ def login():
   try:
     request_body = request.get_json()
     if not request_body["username"] or not request_body["password"]:
-      raise RuntimeError(
+      raise Exception(
         "Invalid request object. Must contain username and password"
       )
 
@@ -35,24 +36,31 @@ def login():
       and user.resetRequired == True 
       and user.lastLogin != None
     ):
-      raise RuntimeError("Invalid username or password")
+      raise Exception("Invalid username or password")
 
     user.lastLogin = datetime.now()
     db.session.commit()
 
+    issuer = environ.get("ISSUER")
+    audience = environ.get("AUDIENCE")
+    secret = environ.get("SECRET_KEY")
+
     token_claims = {
       "sub": user.userId,
+      "iss": issuer,
+      "aud": audience,
+      "iat": datetime.utcnow(),
+      "exp": datetime.utcnow() + timedelta(minutes=60),
       "name": user.username,
       "email": user.email,
       "phone_number": user.phone,
-      "exp": datetime.now() + timedelta(minutes=60),
       "resetRequired": user.resetRequired
     }
 
     token = jwt.encode(
       token_claims,
-      environ.get("SECRET_KEY"),
-      "HS256"
+      secret,
+      algorithm="HS256"
     )
     response = ApiResponse(data=[token], error=None).to_json()
     
@@ -60,4 +68,31 @@ def login():
 
   except Exception as ex:
     # TODO: Log the exception
+    print(f"Error! {type(ex)} : {ex}")
     return make_response("Invalid", 401)
+
+@auth_bp.route("/api/auth/password", methods=["POST"])
+@authorize
+def reset_password(user):
+  print(f"User: {user.userId}, {user.username}, {user.email}")
+
+  try:
+    request_body = request.get_json()
+
+    db_user = User.query.\
+      filter_by(
+        userId = user.userId
+      ).\
+      first()
+
+    db_user.password = request_body["password"]
+    db_user.resetRequired = False
+    db.session.commit()
+    response = ApiResponse(data=[True], error=None).to_json()
+    return make_response(response, 200)
+
+  except Exception as ex:
+    # TODO: Log the exception
+    print(f"Error! {type(ex)} : {ex}")
+    response = ApiResponse(data=None, error=str(ex)).to_json()
+    return make_response(response, 200)
