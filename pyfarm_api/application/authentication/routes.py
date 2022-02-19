@@ -74,8 +74,6 @@ def login():
 @auth_bp.route("/api/auth/password", methods=["POST"])
 @authorize
 def reset_password(user):
-  print(f"User: {user.userId}, {user.username}, {user.email}")
-
   try:
     request_body = request.get_json()
 
