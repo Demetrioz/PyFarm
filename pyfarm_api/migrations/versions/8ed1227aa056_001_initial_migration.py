@@ -25,7 +25,10 @@ def upgrade():
         sa.Column("userId", sa.Integer, primary_key=True),
         sa.Column("username", sa.String(255), nullable=False, unique=True),
         sa.Column("password", sa.String(255), nullable=False),
+        sa.Column("email", sa.String(255), nullable=True),
+        sa.Column("phone", sa.String(11), nullable=True),
         sa.Column("resetRequired", sa.Boolean, nullable=False),
+        sa.Column("lastLogin", sa.DateTime, nullable=True),
         sa.Column("created", sa.DateTime, nullable=False),
         sa.Column("modified", sa.DateTime, nullable=False),
         sa.Column("isDeleted", sa.Boolean, nullable=False)

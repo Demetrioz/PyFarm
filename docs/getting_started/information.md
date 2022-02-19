@@ -17,6 +17,7 @@ PyFarm Devices can be used by themselves or
 - [flask](https://flask.palletsprojects.com/en/2.0.x/)
 - [flask_cors](https://flask-cors.readthedocs.io/en/latest/)
 - [flask_sqlalchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
+- [pyjwt](https://pyjwt.readthedocs.io/en/stable/)
 - [python-dotenv](https://pypi.org/project/python-dotenv/)
 
 ## PyFarm App
@@ -28,10 +29,11 @@ PyFarm Devices can be used by themselves or
 
 ### Dependencies
 
+- [jwt-decode](https://github.com/auth0/jwt-decode)
 - [Material UI](https://mui.com/)
+- [Notistack](https://iamhosseindhv.com/notistack)
 - [React-Redux](https://react-redux.js.org/)
 - [React-Router-Dom](https://reactrouter.com/)
-- [Notistack](https://iamhosseindhv.com/notistack)
 
 ## PyFarm Data Models
 
