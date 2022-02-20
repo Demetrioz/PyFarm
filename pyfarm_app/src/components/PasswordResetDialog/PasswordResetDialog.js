@@ -59,7 +59,7 @@ function PasswordResetDialog(props) {
         password.value
       );
 
-      if (result && result[0] == true) dispatch(removeDialog(props.id));
+      if (result && result[0] === true) dispatch(removeDialog(props.id));
     } catch (e) {
       console.log("Error!", e);
     }

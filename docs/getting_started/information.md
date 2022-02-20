@@ -36,6 +36,7 @@ information for them [here](../tech_docs/devices.md)
 - [Material UI](https://mui.com/)
 - [Notistack](https://iamhosseindhv.com/notistack)
 - [React-Redux](https://react-redux.js.org/)
+- [React Responsive](https://github.com/yocontra/react-responsive)
 - [React-Router-Dom](https://reactrouter.com/)
 
 ## PyFarm Data Models

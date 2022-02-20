@@ -4,7 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { addDialog } from "./redux/NotificationsSlice";
 
-import Login from "./pages/login/Login";
+import Login from "./pages/Login/Login";
+import NotFound from "./pages/NotFound/NotFound";
+import Reference from "./pages/Reference/Reference";
+import Users from "./pages/Users/Users";
 
 import PasswordResetDialog from "./components/PasswordResetDialog/PasswordResetDialog";
 
@@ -40,9 +43,10 @@ function App() {
               <React.Fragment key={dialog.key}>{dialog.content}</React.Fragment>
             );
           })}
-
         <Routes>
-          <Route path="/" element={<div>App...</div>} />
+          <Route path="/" element={<Reference />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     );
