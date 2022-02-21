@@ -1,13 +1,12 @@
 import jwt
 from datetime import datetime, timedelta
-from flask import Blueprint, jsonify, make_response, request
-from flask import current_app as app
+from flask import Blueprint, make_response, request
 from os import environ
 
 from ..decorators.authorize import authorize
 from ..dtos.api_response import ApiResponse
 from .. import db
-from .models import User
+from ..users.models import User
 
 auth_bp = Blueprint(
   "auth_bp",

@@ -49,3 +49,37 @@ A Postman collection and environment are available within the [repo]()
   "password": "string"
 }
 ```
+
+## User Management
+
+### Get Users
+
+**Purpose**: Retrieve a list of all users  
+**Endpoint**: /api/users  
+**Authorization**: Yes  
+**Methods**: GET
+
+### Create User
+
+**Purpose**: Create a new user  
+**Endpoint**: /api/users  
+**Authorization**: Yes  
+**Methods**: POST  
+**Body**:
+
+```
+{
+  "username": "string",
+  "password": "string"
+}
+```
+
+### Get User
+
+**Purpose**: Get a specific user  
+**Endpoint**: /api/users/{id}  
+**Authorization**: Yes  
+**Methods**: GET  
+**Parameters**:
+
+- id (Int) - The id of the user you're wanting to retrieve data about

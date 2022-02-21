@@ -3,7 +3,7 @@ from flask import make_response, request
 import jwt
 from os import environ
 
-from ..authentication.models import User
+from ..users.models import User
 
 def authorize(function):
   @wraps(function)

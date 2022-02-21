@@ -19,7 +19,9 @@ def init_app():
 
   with app.app_context():
     from .authentication import routes as authentication
+    from .users import routes as users
 
     app.register_blueprint(authentication.auth_bp)
+    app.register_blueprint(users.user_bp)
     
     return app
