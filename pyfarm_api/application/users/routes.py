@@ -20,7 +20,20 @@ def get_users(user):
     ).\
     all()
 
-  users_result = User.serialize_list(users)
+  serialized_users = User.serialize_list(users)
+  users_result = [
+    {
+      "userId": item["userId"],
+      "username": item["username"],
+      "email": item["email"],
+      "phone": item["phone"],
+      "created": item["created"],
+      "lastLogin": item["lastLogin"],
+    }
+    for item
+    in serialized_users
+  ]
+
   return ApiResponse.success(users_result)
 
 @user_bp.route("/api/users", methods=["POST"])

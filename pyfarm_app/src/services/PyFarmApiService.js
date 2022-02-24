@@ -5,6 +5,7 @@ class PyFarmApiService {
   static userToken = null;
 
   static Authentication = require("./pyfarmApi/Authentication");
+  static Users = require("./pyfarmApi/Users");
 
   static async request(uri, body, method) {
     let headers = {

@@ -44,7 +44,6 @@ function Login() {
         userFields.password
       );
 
-      console.log("token?", token);
       dispatch(setUser(token));
     } catch (e) {
       console.log("Error!", e);
