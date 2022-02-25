@@ -56,11 +56,11 @@ def create_user(user):
     db.session.add(new_user)
     db.session.commit()
 
-    return ApiResponse.success(data=[User.serialize(new_user)])
+    return ApiResponse.success([User.serialize(new_user)])
   except Exception as ex:
     # TODO: Log the exception
     print(f"Error! {type(ex)} : {ex}")
-    return make_response("Error", 200)
+    return ApiResponse.failure("Unable to add user. Please try again")
 
 @user_bp.route("/api/users/<int:user_id>", methods=["GET"])
 @authorize

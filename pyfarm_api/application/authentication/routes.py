@@ -3,9 +3,9 @@ from datetime import datetime, timedelta
 from flask import Blueprint, make_response, request
 from os import environ
 
+from .. import db
 from ..decorators.authorize import authorize
 from ..dtos.api_response import ApiResponse
-from .. import db
 from ..users.models import User
 
 auth_bp = Blueprint(
@@ -61,14 +61,13 @@ def login():
       secret,
       algorithm="HS256"
     )
-    response = ApiResponse(data=[token], error=None).to_json()
-    
-    return make_response(response, 200)
+    return ApiResponse.success([token])
 
   except Exception as ex:
     # TODO: Log the exception
     print(f"Error! {type(ex)} : {ex}")
-    return make_response("Invalid", 401)
+    print(f"string error = {str(ex)}")
+    return ApiResponse.failure(str(ex))
 
 @auth_bp.route("/api/auth/password", methods=["POST"])
 @authorize
@@ -85,11 +84,9 @@ def reset_password(user):
     db_user.password = request_body["password"]
     db_user.resetRequired = False
     db.session.commit()
-    response = ApiResponse(data=[True], error=None).to_json()
-    return make_response(response, 200)
+    return ApiResponse.success([True])
 
   except Exception as ex:
     # TODO: Log the exception
     print(f"Error! {type(ex)} : {ex}")
-    response = ApiResponse(data=None, error=str(ex)).to_json()
-    return make_response(response, 200)
+    return ApiResponse.failure(str(ex))

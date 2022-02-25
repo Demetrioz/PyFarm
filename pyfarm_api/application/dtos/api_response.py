@@ -13,3 +13,13 @@ class ApiResponse():
   def success(data: list):
     result = ApiResponse(data=data, error=None).to_json()
     return make_response(result, 200, { "Content-Type": "application/json" })
+
+  @staticmethod
+  def failure(error: str):
+    result = ApiResponse(data=None, error=error).to_json()
+    return make_response(result, 200, { "Content-Type": "application/json" })
+
+  @staticmethod
+  def unauthorized():
+    result = ApiResponse(data=None, error="Unauthorized").to_json()
+    return make_response(result, 401, { "Content-Type": "application/json" })

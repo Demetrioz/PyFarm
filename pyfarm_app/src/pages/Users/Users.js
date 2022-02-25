@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
+// import _ from "lodash";
+import { clone } from "lodash";
 
 import BasePage from "../BasePage/BasePage";
 
@@ -7,9 +10,13 @@ import IconButton from "@mui/material/IconButton";
 import Fab from "@mui/material/Fab";
 import { DataGrid } from "@mui/x-data-grid";
 
+import { addDialog } from "../../redux/NotificationsSlice";
+
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+
+import AddUserDialog from "../../components/AddUserDialog/AddUserDialog";
 
 import PyFarmApiService from "../../services/PyFarmApiService";
 
@@ -17,6 +24,8 @@ import PyFarmApiService from "../../services/PyFarmApiService";
 const getTableHeight = () => window.innerHeight - 80;
 
 function Users() {
+  const dispatch = useDispatch();
+
   const [tableHeight, setTableHeight] = useState(getTableHeight());
   const [users, setUsers] = useState([]);
 
@@ -57,7 +66,22 @@ function Users() {
   }, []);
 
   const handleAddUser = () => {
-    console.log("Adding...");
+    dispatch(
+      addDialog({
+        key: "add_user",
+        content: <AddUserDialog id="add_user" onSave={onAddSuccess} />,
+      })
+    );
+  };
+
+  const onAddSuccess = (newUser) => {
+    let updatedUsers = clone(users);
+    updatedUsers.push(newUser);
+    updatedUsers = updatedUsers.map((u, i) => {
+      u.id = i;
+      return u;
+    });
+    setUsers(updatedUsers);
   };
 
   const handleEditUser = (userId) => {

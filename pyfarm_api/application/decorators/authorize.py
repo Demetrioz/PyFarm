@@ -3,6 +3,7 @@ from flask import make_response, request
 import jwt
 from os import environ
 
+from ..dtos.api_response import ApiResponse
 from ..users.models import User
 
 def authorize(function):
@@ -51,8 +52,8 @@ def authorize(function):
       except Exception as ex:
         # TODO: Log the error
         print(f"Error! {type(ex)} : {ex}")
-        return make_response("Unauthorized", 401)
+        return ApiResponse.unauthorized()
     else:
-      return make_response("Unauthorized", 401)
+      return ApiResponse.unauthorized()
 
   return decorator

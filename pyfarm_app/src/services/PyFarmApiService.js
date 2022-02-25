@@ -24,7 +24,7 @@ class PyFarmApiService {
     let response = await fetch(url, options);
     response = await response.json();
 
-    if (response.Error) throw Error(response.Error);
+    if (response.error) throw Error(response.error);
     return response.data;
   }
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useSnackbar } from "notistack";
 
 import { setUser } from "../../redux/UserSlice";
 
@@ -18,6 +19,7 @@ import Style from "./Login.module.css";
 
 function Login() {
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const [userFields, setUserFields] = useState({
     username: "",
     password: "",
@@ -46,7 +48,7 @@ function Login() {
 
       dispatch(setUser(token));
     } catch (e) {
-      console.log("Error!", e);
+      enqueueSnackbar(e.message, { variant: "error" });
     }
   };
 
