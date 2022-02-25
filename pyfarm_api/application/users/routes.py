@@ -73,3 +73,24 @@ def get_user(user, user_id):
 
   user_result = [User.serialize(db_user)] if db_user != None else []
   return ApiResponse.success(user_result)
+
+@user_bp.route("/api/users/<int:user_id>", methods=["DELETE"])
+@authorize
+def delete_user(user, user_id):
+  try:
+    if user.userId == user_id or user_id == 1:
+      raise Exception("Cannot delete user")
+
+    User.query.\
+      filter_by(
+        userId = user_id
+      ).\
+      delete()
+
+    db.session.commit()
+
+    return ApiResponse.success([True])
+  except Exception as ex:
+    # TODO: Log the exception
+    print(f"Error! {type(ex)} : {ex}")
+    return ApiResponse.failure("Unable to delete user. Please try again")

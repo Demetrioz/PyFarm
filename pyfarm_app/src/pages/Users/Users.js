@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
-// import _ from "lodash";
-import { clone } from "lodash";
+import { useSnackbar } from "notistack";
+import { clone, remove } from "lodash";
 
 import BasePage from "../BasePage/BasePage";
 
@@ -25,7 +25,7 @@ const getTableHeight = () => window.innerHeight - 80;
 
 function Users() {
   const dispatch = useDispatch();
-
+  const { enqueueSnackbar } = useSnackbar();
   const [tableHeight, setTableHeight] = useState(getTableHeight());
   const [users, setUsers] = useState([]);
 
@@ -88,8 +88,20 @@ function Users() {
     console.log("Editing user ", userId);
   };
 
-  const handleDeleteUser = (userId) => {
-    console.log("Deleting user ", userId);
+  const handleDeleteUser = async (userId) => {
+    try {
+      await PyFarmApiService.Users.deleteUser(userId);
+
+      let updatedUsers = clone(users);
+      updatedUsers = remove(updatedUsers, (u) => {
+        return u.userId !== userId;
+      });
+      setUsers(updatedUsers);
+
+      enqueueSnackbar("User Deleted!", { variant: "success" });
+    } catch (e) {
+      enqueueSnackbar(e.message, { variant: "error" });
+    }
   };
 
   const renderActionButtons = (params) => {

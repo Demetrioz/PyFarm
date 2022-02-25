@@ -12,3 +12,7 @@ export const createUser = async (username, password) => {
 
   return await PyFarmApiService.request("users", body, "POST");
 };
+
+export const deleteUser = async (userId) => {
+  return await PyFarmApiService.request(`users/${userId}`, null, "DELETE");
+};
