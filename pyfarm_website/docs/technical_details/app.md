@@ -1,6 +1,25 @@
-# PyFarm Web App
+---
+sidebar_position: 3
+---
 
-The PyFarm web app is used to manage and maintain your farm.
+# Web Application
+
+The PyFarm web app is the frontend application used to manage and maintain your
+farm.
+
+## Tech Stack
+
+- [Node](https://nodejs.org/en/)
+- [React](https://reactjs.org/)
+
+## Dependencies
+
+- [jwt-decode](https://github.com/auth0/jwt-decode)
+- [lodash](https://lodash.com/)
+- [Material UI](https://mui.com/)
+- [Notistack](https://iamhosseindhv.com/notistack)
+- [React-Redux](https://react-redux.js.org/)
+- [React-Router-Dom](https://reactrouter.com/)
 
 ## State Management
 
@@ -103,6 +122,8 @@ as plant times, spacing, etc
 **URL**: /users
 
 ## Components
+
+Components are smaller react components that are utilized throughout pages.
 
 ### DialogBase
 

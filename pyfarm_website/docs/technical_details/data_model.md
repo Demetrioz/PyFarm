@@ -1,4 +1,8 @@
-# PyFarm Data Model
+---
+sidebar_position: 4
+---
+
+# Data Model
 
 The PyFarm data model consists of the database tables needed to perform various
 farm tasks and represent different types of objects. The tables can be split
@@ -9,7 +13,7 @@ into a number of "work areas" or business units as seen below.
 Authentication tables are utilzed to keep track of users and roles within the
 application
 
-#### User
+### User
 
 The user table contains a list of all users within the PyFarm application
 
