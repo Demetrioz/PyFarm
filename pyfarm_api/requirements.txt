@@ -4,3 +4,4 @@ flask_cors
 flask_sqlalchemy
 pyjwt
 python-dotenv
+mako>=1.2.2 # not directly required, pinned by Snyk to avoid a vulnerability
